@@ -3,6 +3,25 @@ import { useState } from "react";
 
 const updates = [
   {
+    date: "7 Sep 2026",
+    title: "Dorchester Engine System — Gen Ix50",
+    summary: "Second incremental update to the Generation I engine. Gen Ix50 expands language support to six languages, grows the MCP tool surface from 4 to 10 tools, and updates the OpenKrak landing page to reflect current capabilities.",
+    changes: [
+      { type: "Added", text: "Multi-language support. The DeepStrike pipeline now processes Python (.py), Go (.go), Rust (.rs), Java (.java), and C# (.cs) in addition to TypeScript and JavaScript. Two new modules introduced: polyglotSymbolExtractor.ts (regex-based function, class, method, and type extraction per language) and polyglotDependencyResolver.ts (import/use/from statement extraction per language). TS/JS continues to use the AST-based path for higher accuracy; all other languages use the regex path." },
+      { type: "Added", text: "Language breakdown reporting. primary_language and languages[] fields in the analysis output are now computed dynamically from actual file extension distribution across the scanned repository. Previously hardcoded to TypeScript 100%." },
+      { type: "Added", text: "File discovery extended to all 6 supported languages. Extensions added: .py, .go, .rs, .java, .cs. Ignore patterns added for each: __pycache__, .venv, venv (Python); vendor (Go); target (Rust); bin, obj, .gradle (Java/C#)." },
+      { type: "Added", text: "get_topology tool. Returns project type (monolith/monorepo), detected framework, language breakdown with percentages, all entry points, module list, and architectural layers. Use to orient to an unfamiliar codebase before reading any files." },
+      { type: "Added", text: "get_findings tool. Returns structural findings filterable by severity (critical/high/medium/low/info) and type (dead_code/missing_symbol/circular_dependency/god_object/coupling_issue/security). Sortable, capped at configurable limit." },
+      { type: "Added", text: "get_file_dependencies tool. Returns all imports made by a specific file and all files that import it. Deduplicates edges. Use before modifying any file to understand its full dependency context." },
+      { type: "Added", text: "get_dead_code tool. Returns dead/unused export findings split into genuine (actionable) and noise-suppressed (false positive) categories. Suppressed findings include their Rule 4 suppression reason." },
+      { type: "Added", text: "get_cycles tool. Returns all circular dependency cycles with the complete file path sequence of each cycle. Flags runtime risk from barrel import order dependencies." },
+      { type: "Added", text: "get_security tool. Returns security-pattern findings: hardcoded secrets, sensitive key patterns, dangerous shell commands, and critical-severity issues. Intended for pre-deployment and pre-review gates." },
+      { type: "Changed", text: "MCP tool count: 4 to 10. All 6 new tools are available under the same npx openkrak-mcp installation with no config change required." },
+      { type: "Changed", text: "OpenKrak landing page updated. Tools reference section updated from 4 to 10 tools with descriptions and examples. Stats section updated to reflect Gen Ix25 benchmark figures (70-92% token reduction). Language support listed in hero description. Free plan feature updated to 'All 10 MCP tools'." },
+      { type: "Metric", text: "openkrak-mcp version bumped to v1.1.0 (minor release). Published to npm." },
+    ],
+  },
+  {
     date: "6 Sep 2026",
     title: "Dorchester Engine System — Gen Ix25",
     summary: "First incremental update to the Generation I engine. Gen Ix25 completes the noise reduction layer, introduces monorepo-aware framework detection, and resolves a pre-existing TypeScript interface gap in the Hotspot Registry.",
