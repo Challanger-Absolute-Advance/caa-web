@@ -22,6 +22,15 @@ const updates = [
     ],
   },
   {
+    date: "7 Sep 2026",
+    title: "Dorchester Engine System — Gen Ix50 (hotfix)",
+    summary: "Stability fix for v1.1.2 regression. Pipeline hang caused by unsafe framework field extraction from topology object. Patched in v1.1.3.",
+    changes: [
+      { type: "Fixed", text: "v1.1.2 regression: framework field extraction from topology object caused pipeline hang in certain cases. The (topology as any).framework access was replaced with a typeof string guard — only assigns if the value is actually a string, otherwise null. This restores the sub-15K token efficiency and prevents LLM fallback to manual file reads." },
+      { type: "Fixed", text: "Confirmed root cause via bisect: v1.1.0 and v1.1.1 clean (13K tokens), v1.1.2 hang (59K tokens, 6 minutes). Single-line typeof guard resolves." },
+      { type: "Metric", text: "Post-patch benchmark — ChesterMath (26 files, 3370 LOC): 13,128 tokens total, framework: Next.js 16.2.6 detected, 73 findings, pipeline complete. Consistent with pre-regression baseline." },
+    ],
+  },  {
     date: "6 Sep 2026",
     title: "Dorchester Engine System — Gen Ix25",
     summary: "First incremental update to the Generation I engine. Gen Ix25 completes the noise reduction layer, introduces monorepo-aware framework detection, and resolves a pre-existing TypeScript interface gap in the Hotspot Registry.",
