@@ -113,10 +113,6 @@ const updates = [
   },
 ];
 
-const VISIBLE_INITIAL = 4;
-const VISIBLE_MAX = 10;
-const LOAD_MORE_STEP = 4;
-
 const changeTypeColor: Record<string, string> = {
   Added: "#2a6a2a",
   Changed: "#4a5a8a",
@@ -163,55 +159,17 @@ function UpdateRow({ update }: { update: typeof updates[0] }) {
 }
 
 function UpdatesList() {
-  const [visible, setVisible] = useState(VISIBLE_INITIAL);
-  const shown = updates.slice(0, visible);
-  const canLoadMore = visible < updates.length && visible < VISIBLE_MAX;
-  const isAtMax = visible >= VISIBLE_MAX;
-
   return (
-    <div>
-      <div
-        style={{
-          overflowY: isAtMax ? "auto" : "visible",
-          maxHeight: isAtMax ? "640px" : "none",
-        }}
-      >
-        <div>
-          {shown.map((u, i) => <UpdateRow key={i} update={u} />)}
-          <div style={{ borderTop: "1px solid #e8e8e8" }} />
-        </div>
-      </div>
-      <div style={{ display: "flex", gap: "16px", marginTop: "12px", alignItems: "center" }}>
-        {canLoadMore && (
-          <button
-            onClick={() => setVisible(v => Math.min(v + LOAD_MORE_STEP, updates.length))}
-            className="mono"
-            style={{
-              background: "none", border: "1px solid #d0d0d0", cursor: "pointer",
-              fontSize: "10px", color: "#555", letterSpacing: "0.06em",
-              padding: "6px 14px", textTransform: "uppercase",
-            }}
-          >
-            Load more
-          </button>
-        )}
-        {visible > VISIBLE_INITIAL && (
-          <button
-            onClick={() => setVisible(VISIBLE_INITIAL)}
-            className="mono"
-            style={{
-              background: "none", border: "none", cursor: "pointer",
-              fontSize: "10px", color: "#999", letterSpacing: "0.06em",
-              padding: "6px 0", textDecoration: "underline",
-            }}
-          >
-            Collapse
-          </button>
-        )}
-        <span className="mono" style={{ fontSize: "10px", color: "#bbb", marginLeft: "auto" }}>
-          {Math.min(visible, updates.length)} of {updates.length}
-        </span>
-      </div>
+    <div
+      style={{
+        overflowY: "auto",
+        maxHeight: "520px",
+        scrollbarWidth: "thin",
+        scrollbarColor: "#e0e0e0 transparent",
+      }}
+    >
+      {updates.map((u, i) => <UpdateRow key={i} update={u} />)}
+      <div style={{ borderTop: "1px solid #e8e8e8" }} />
     </div>
   );
 }
