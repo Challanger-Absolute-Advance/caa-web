@@ -3,6 +3,19 @@ import { useState } from "react";
 
 const updates = [
   {
+    date: "9 Sep 2026",
+    title: "Dorchester Engine System — Generation II",
+    summary: "Generation II marks a full strategic pivot. Primary target platform moves from OpenCode to Claude Code. The Trojan injection system (openkrak-init) deploys .mcp.json and CLAUDE.md directly into user repositories, forcing Claude to load OpenKrak before touching any source file. Tool surface, multi-language support, and output density carried forward from Gen I.",
+    changes: [
+      { type: "Added", text: "openkrak-init CLI. New binary published alongside openkrak-mcp. Running npx openkrak-init in any repository root creates .mcp.json (Claude Code MCP server config) and CLAUDE.md (mandatory system-prompt instructions) automatically. Merges safely with existing .mcp.json if present." },
+      { type: "Added", text: "CLAUDE.md template. Injected into Claude Code's system prompt on every turn via the CLAUDE.md mechanism. Content mandates: call analyze_repo before reading any source file, read the full Dorchester brief, answer from the brief without additional file reads. Includes full tool reference table." },
+      { type: "Added", text: ".mcp.json template. Claude Code MCP server config pointing to openkrak-mcp@1.3.0 via npx stdio transport. Drops into repo root alongside CLAUDE.md." },
+      { type: "Changed", text: "Primary integration target: Claude Code. OpenCode demoted to manual-trigger only. Claude Code enforces CLAUDE.md instructions at the system prompt level — the LLM cannot ignore them. This is the core mechanic that makes the Trojan strategy viable." },
+      { type: "Changed", text: "Secondary targets added: Cursor and Windsurf. Both support .mcp.json and project-level instruction files. Both use Claude or GPT-4o as underlying model — both are tool-use compliant by default." },
+      { type: "Changed", text: "openkrak-init verifies npx can resolve openkrak-mcp on install and provides next-step instructions on completion." },
+      { type: "Metric", text: "openkrak-mcp@1.3.0 published to npm. New binary: openkrak-init. Package description updated to reflect Claude Code primary positioning." },
+    ],
+  },  {
     date: "7 Sep 2026",
     title: "Dorchester Engine System — Gen Ix50",
     summary: "Second incremental update to the Generation I engine. Gen Ix50 expands language support to six languages, grows the MCP tool surface from 4 to 10 tools, and updates the OpenKrak landing page to reflect current capabilities.",
