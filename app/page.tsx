@@ -369,14 +369,14 @@ export default function Home() {
                 OpenKrak is an MCP server that performs static analysis on software repositories prior to language model execution. The system traverses the repository file graph, constructs a dependency model, scores files by complexity and coupling, and computes blast radius for any given change target. The output is a structured brief delivered to the language model before it accesses any source file, reducing token consumption and improving task precision.
               </p>
               <p style={{ fontSize: "13px", lineHeight: 1.85, color: "#333", marginBottom: "24px" }}>
-                The analysis pipeline runs on the Dorchester engine, a proprietary static analysis system developed and maintained under a separate private repository. Dorchester is not publicly available. OpenKrak exposes its capabilities through the MCP protocol, currently integrated with OpenCode.
+                The analysis pipeline runs on the Dorchester engine, a proprietary static analysis system developed and maintained under a separate private repository. Dorchester is not publicly available. OpenKrak exposes its capabilities through the MCP protocol. Primary integration: Claude Code, Claude Desktop, Cursor, and Windsurf.
               </p>
               <div style={{ marginBottom: "28px" }}>
                 {[
                   ["Type", "MCP server — developer tooling"],
                   ["Engine", "Dorchester (proprietary, closed source)"],
                   ["Distribution", "npm / openkrak-mcp"],
-                  ["Integration", "OpenCode"],
+                  ["Integration", "Claude Code, Claude Desktop, Cursor, Windsurf"],
                   ["License model", "Free tier (15 queries / 24h). Pro license via Payhip."],
                   ["Status", "Operational."],
                   ["Repository", "github.com/FrnzJulianBergmann/openkrak"],
